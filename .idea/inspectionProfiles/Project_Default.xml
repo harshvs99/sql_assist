@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="21">
+            <item index="0" class="java.lang.String" itemvalue="phatbeat" />
+            <item index="1" class="java.lang.String" itemvalue="pygame" />
+            <item index="2" class="java.lang.String" itemvalue="blinkt" />
+            <item index="3" class="java.lang.String" itemvalue="pianohat" />
+            <item index="4" class="java.lang.String" itemvalue="python-apt" />
+            <item index="5" class="java.lang.String" itemvalue="PyGObject" />
+            <item index="6" class="java.lang.String" itemvalue="drumhat" />
+            <item index="7" class="java.lang.String" itemvalue="pycrypto" />
+            <item index="8" class="java.lang.String" itemvalue="unicornhathd" />
+            <item index="9" class="java.lang.String" itemvalue="Cap1xxx" />
+            <item index="10" class="java.lang.String" itemvalue="spidev" />
+            <item index="11" class="java.lang.String" itemvalue="touchphat" />
+            <item index="12" class="java.lang.String" itemvalue="RTIMULib" />
+            <item index="13" class="java.lang.String" itemvalue="picamera" />
+            <item index="14" class="java.lang.String" itemvalue="automationhat" />
+            <item index="15" class="java.lang.String" itemvalue="envirophat" />
+            <item index="16" class="java.lang.String" itemvalue="motephat" />
+            <item index="17" class="java.lang.String" itemvalue="RPi.GPIO" />
+            <item index="18" class="java.lang.String" itemvalue="ExplorerHAT" />
+            <item index="19" class="java.lang.String" itemvalue="pyinotify" />
+            <item index="20" class="java.lang.String" itemvalue="rainbowhat" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N801" />
+          <option value="N803" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
