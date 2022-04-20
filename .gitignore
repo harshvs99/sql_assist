@@ -1,3 +1,4 @@
 /templates/
 /.idea/
 /_pycache_
+/venv/Lib/site-packages/
