@@ -24,5 +24,8 @@ from sqlapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', sqlapp.views.index),
-    path('connect/', sqlapp.views.connectDatabase)
+    path('connect/', sqlapp.views.connectDatabase),
+    path('listtables/', sqlapp.views.getTableList),
+    path('getmetadata/', sqlapp.views.getTableMetadataList),
+    path('getcolumns/', sqlapp.views.getColumnList)
 ]

@@ -8,8 +8,9 @@ class db_factory(object):
     def get_db(db_type, **kwargs):
         print("object: ", db_type)
         print("return val: ", db_type.lower())
-        try:
-            return DB_TYPES[db_type.lower()](**kwargs)
-        except Exception as e:
-            print(f"Error creating factory object: {e}")
-            return None
+        # try:
+        #     return DB_TYPES[db_type.lower()](**kwargs)
+        # except Exception as e:
+        #     print(f"Error creating factory object: {e}")
+        #     return None
+        return DB_TYPES[db_type.lower()](**kwargs)

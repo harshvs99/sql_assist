@@ -1,3 +1,5 @@
+import json
+
 import pyodbc
 
 
@@ -12,9 +14,9 @@ class mssqlserver():
         self.password = password
         self.database = database
         self.table = table
-
         # self.driver = 'ODBC Driver 18 for SQL Server'
-        self.driver = 'SQL Driver'
+        # self.driver = 'SQL Server'
+        self.driver = 'MySQL ODBC 8.0 ANSI Driver'
         self.connection = self.create_connection()
 
     def create_connection(self):
@@ -31,6 +33,16 @@ class mssqlserver():
 
         connection = pyodbc.connect(conn_str)
         return connection
+
+    def get_table_list(self):
+        list_tbls = []
+        cursor = self.connection.cursor()
+        # cursor.execute()
+
+        rows = cursor.fetchall()
+        print("rows: ", rows)
+        # tbl_list = list(map(lambda x: x.table_name, rows))
+        return json.dumps({"tbl_list": list_tbls})
 
     def get_table_metadata(self):
         cursor = self.connection.cursor()
