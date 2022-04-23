@@ -1,6 +1,9 @@
 import json
 
 import pyodbc
+import logging
+
+logging.basicConfig(filename="main.log", encoding='utf-8', level=logging.INFO)
 
 
 class MSqlConstants:
@@ -29,8 +32,7 @@ class mssqlserver():
         if self.database is not None:
             conn_str = ''.join([conn_str, f'DATABASE={self.database};'])
 
-        print(conn_str)
-
+        logging.info(f"Functions :: Connection being generated on: {conn_str}")
         connection = pyodbc.connect(conn_str)
         return connection
 
@@ -38,15 +40,12 @@ class mssqlserver():
         list_tbls = []
         cursor = self.connection.cursor()
         # cursor.execute()
-
         rows = cursor.fetchall()
-        print("rows: ", rows)
-        # tbl_list = list(map(lambda x: x.table_name, rows))
         return json.dumps({"tbl_list": list_tbls})
 
     def get_table_metadata(self):
         cursor = self.connection.cursor()
-        print(f"Metadata request recieved for table: {self.table}")
+        logging.info(f"Functions :: Metadata request recieved for table: {self.table}")
         metadata = []
         column_data = cursor.columns(
             table=self.table,
@@ -55,7 +54,7 @@ class mssqlserver():
         columns = [column[0] for column in cursor.description]
         for col in column_data:
             metadata.append(dict(zip(columns, col)))
-        print(f"Metadata received for table: {self.table}")
+        logging.info(f"Functions :: Metadata generated for table: {self.table}")
         return metadata
 
     def __exit__(self, exc_type, exc_val, exc_tb):
