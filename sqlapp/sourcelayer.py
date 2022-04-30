@@ -19,7 +19,7 @@ class mssqlserver():
         self.table = table
         # self.driver = 'ODBC Driver 18 for SQL Server'
         # self.driver = 'SQL Server'
-        self.driver = 'MySQL ODBC 8.0 ANSI Driver'
+        self.driver = 'MySQL ODBC 8.0 Driver'
         self.connection = self.create_connection()
 
     def create_connection(self):
@@ -47,9 +47,10 @@ class mssqlserver():
         cursor = self.connection.cursor()
         logging.info(f"Functions :: Metadata request recieved for table: {self.table}")
         metadata = []
+        # cursor.execute("list databases")
         column_data = cursor.columns(
-            table=self.table,
-            catalog=self.database
+            # table=self.table,
+            # catalog=self.database
         ).fetchall()
         columns = [column[0] for column in cursor.description]
         for col in column_data:

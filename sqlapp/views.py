@@ -82,24 +82,6 @@ def connectDatabase(request, **kwargs):
 
 
 @csrf_exempt
-def getTableList(request, **kwargs):
-    # /listtables
-    try:
-        db = getInput(request)
-        tbl_dict = db.get_table_metadata()
-        table_list = set([])
-        for table_col in tbl_dict:
-            table_list.add(table_col["table_cat"])
-        set_table_list = list(table_list)
-        logging.info(f"Views :: {len(set_table_list)} tables fetched successfully from database")
-        return JsonResponse(set_table_list, safe=False)
-    except Exception as e:
-        logging.error(f"Views :: {e}")
-        return HttpResponse(json.dumps(
-            {"status": "error", "message": "Check logs for error"}))
-
-
-@csrf_exempt
 def getTableMetadataList(request, **kwargs):
     # getmetadata/
     try:
@@ -112,13 +94,48 @@ def getTableMetadataList(request, **kwargs):
         message = "Wrong request type"
         return HttpResponse(json.dumps(
             {"status": "error",
-             "message": message},
-            content_type="application/json"))
+             "message": message}))
+
+
+@csrf_exempt
+def getDBList(request, **kwargs):
+    # /listdbs
+    try:
+        db = getInput(request)
+        db_dict = db.get_table_metadata()
+        db_list = set([])
+        for table_col in db_dict:
+            db_list.add(table_col["table_cat"])
+        set_db_list = list(db_list)
+        logging.info(f"Views :: {len(set_db_list)} databases fetched successfully from database")
+        return JsonResponse(set_db_list, safe=False)
+    except Exception as e:
+        logging.error(f"Views :: {e}")
+        return HttpResponse(json.dumps(
+            {"status": "error", "message": "Check logs for error"}))
+
+
+@csrf_exempt
+def getTableList(request, **kwargs):
+    # /listtables
+    try:
+        db = getInput(request)
+        tbl_dict = db.get_table_metadata()
+        table_list = set([])
+        for table_col in tbl_dict:
+            table_list.add(table_col["table_name"])
+        set_table_list = list(table_list)
+        logging.info(f"Views :: {len(set_table_list)} tables fetched successfully from database")
+        return JsonResponse(set_table_list, safe=False)
+    except Exception as e:
+        logging.error(f"Views :: {e}")
+        return HttpResponse(json.dumps(
+            {"status": "error", "message": "Check logs for error"}))
 
 
 @csrf_exempt
 def getColumnList(request, **kwargs):
-    # getcolumns/
+    # listcolumns/
     if request.method == 'POST':
         config = json.loads(request.body)
         table_name = config['tablename']
